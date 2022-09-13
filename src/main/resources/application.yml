@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: demoapi
+  profiles:
+    active: local
+management:
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: health, info, keepalive, prometheus
