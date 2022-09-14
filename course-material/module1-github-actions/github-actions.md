@@ -29,9 +29,14 @@ Based on the outcomes of presenting, the course leader(s) and course taker can c
 
 ### Pre-requisties
 
-You will need an Azure subscription for this module. In future iterations of this module, a shared Core BTS subscription will be used for collaboration. In the meantime, you may use your MSDN benefit for Azure credits as your workspace. 
+You will need an Azure subscription for this module. A shared Core BTS subscription (Modern App - Cloud Foundations Demo) exists that can be used for collaboration. In the future, you Core BTS employees should have access by default. In the meantime, reach out to a course leader to get invited to the subscription. 
 
-You will need to work with the course leaders to configure an Azure Service Principal in this Git repository to authenticate to Azure with your workflow. When ready, work with Alex to configure the appropriate GitHub repository secrets.
+Existing repository secrets exist in this repository for use in GitHub Action workflows. The secrets are:
+- ARM_CLIENT_ID (Azure AD Application Client Id)
+- ARM_CLIENT_SECRET (Azure AD Application Client Secret)
+- ARM_SUBSCRIPTION_ID (Azure AD Subscription)
+
+The Azure AD Tenant Id can be retrieved from the Azure Portal.
 
 In addition to the above, it is suggested to read the top level documents in the "course-material" folder for helpful links, tools and how to get help as you work through the module.
 
