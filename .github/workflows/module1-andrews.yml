@@ -1,11 +1,12 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# Build > Upload Artifact > Download Artifact > Deploy to Azure
 
 name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "feature_as_module1" ]
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
@@ -25,3 +26,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: java-app
+        path: ./target
