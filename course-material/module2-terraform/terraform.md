@@ -1,6 +1,6 @@
 # Module 2 - Terraform
 
-This module is designed to facilitate independent study and work towards creating your Terraform deployment. You will need to have Terraform installed locally, the download link is in [Recommended Tools](https://github.com/CoreBTS/devops-primer/blob/main/course-material/recommended-tools.md) . The Terraform Provider will be [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) for all of the resources in this module.  Please pay careful attention to any warnings listed on a Resource's documentation page, some of them are deprecated and should not be used.
+This module is designed to facilitate independent study and work towards creating your Terraform deployment. You will need to have Terraform installed locally, the download link is in [Recommended Tools](https://github.com/CoreBTS/devops-primer/blob/main/course-material/recommended-tools.md) . The Terraform Provider will be [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) for all of the resources in this module except for the Secret random value.  Please pay careful attention to any warnings listed on a Resource's documentation page, some of them are deprecated and should not be used.
 
 ## Module Info
 
