@@ -31,3 +31,8 @@ jobs:
       with:
         name: java-app
         path: ./target/*.jar
+    
+    - uses: actions/download-artifact@v3
+      with:
+        name: java-app
+        path: ./download
