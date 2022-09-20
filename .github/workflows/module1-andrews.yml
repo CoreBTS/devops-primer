@@ -54,7 +54,7 @@ jobs:
       uses: Azure/webapps-deploy@v2
       with:
         app-name: ${{env.AZURE_WEBAPP_NAME}}
-        package: ./target/*.jar
+        package: ./download/*.jar
 
     - name: Logout
       run: |
