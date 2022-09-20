@@ -6,6 +6,7 @@ name: Java CI with Maven
 
 env:
   AZURE_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
+  AZURE_WEBAPP_NAME: 'as-module1-app01'
 
 on:
   push:
@@ -48,3 +49,13 @@ jobs:
       uses: Azure/login@v1
       with:
         creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
+
+    - name: Azure WebApp
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{env.AZURE_WEBAPP_NAME}}
+        package: ./download/java-app
+
+    - name: Logout
+      run: |
+        az logout
