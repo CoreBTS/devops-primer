@@ -42,7 +42,7 @@ jobs:
         path: ./download
 
     - name: Display download folder
-      run: ls -R
+      run: ls
       working-directory: ./download
 
     - name: Login to Azure
