@@ -36,3 +36,7 @@ jobs:
       with:
         name: java-app
         path: ./download
+
+    - name: Display download folder
+      run: ls -R
+      working-directory: ./download
