@@ -1,6 +1,6 @@
 # Module 2 - Terraform
 
-This module is designed to facilitate independent study and work towards creating your Terraform deployment. You will need to have Terraform installed locally, the download link is in [Recommended Tools](https://github.com/CoreBTS/devops-primer/blob/main/course-material/recommended-tools.md) . The Terraform Provider will be [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) for all of the resources in this module except for the Secret random value.  Please pay careful attention to any warnings listed on a Resource's documentation page, some of them are deprecated and should not be used.
+This module is designed to facilitate independent study and work towards creating your Terraform deployment. You will need to have Terraform installed locally, the download link is in [Recommended Tools](https://github.com/CoreBTS/devops-primer/blob/main/course-material/recommended-tools.md). The Terraform Provider will be [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) for all of the resources in this module except for the Secret random value.  Please pay careful attention to any warnings listed on a Resource's documentation page, some of them are deprecated and should not be used.
 
 ## Module Info
 
@@ -25,7 +25,11 @@ Based on the outcomes of presenting, the course leader(s) and course taker can c
 
 ### Pre-requisites
 
-Hashicorp Terraform and VS Code installed on your workstation, along with access to the Azure Subscription
+Hashicorp Terraform and VS Code installed on your workstation, along with access to the Azure Subscription.
+
+### Storage of Terraform Files
+
+As part of module 2, it is sufficient to store and work in a directory on your local machine for your Terraform files. If you'd prefer to store in this repository to get feedback and prepare for module 3, feel free to commit your changes to the [terraform-artifacts](https://github.com/CoreBTS/devops-primer/tree/main/terraform-artifacts) folder.
 
 ## A Word About State Files
 

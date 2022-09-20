@@ -66,7 +66,8 @@ Other settings not listed above are up to the course taker to choose and _should
 
 *If you have not already, clone this repository to your workstation using git.*
 
-Using the links provided in "helpful-links-and-reference.md" as a starting point, add a **new** GHA workflow to this repository (using the naming convention `module1-<firstname><lastinitial>.yml`).
+Using the links provided in "helpful-links-and-reference.md" as a starting point, add a **new** GHA workflow to this repository (using the naming convention `module1-<firstname><lastinitial>.yml`). 
+- **Hint:** Checkout the GitHub provided [page](https://github.com/CoreBTS/devops-primer/actions/new) of common workflows to get a heads start
 
 It is recommended that you start with configuring a `workflow_dispatch` trigger to allow for manual triggers of your workflow in development / testing. To do this - add the appropriate trigger(s) to your file, along with the minimum required for a valid workflow file, and create a Pull Request. 
 
