@@ -45,6 +45,6 @@ jobs:
       working-directory: ./download
 
     - name: Login to Azure
-    - uses: Azure/login@v1
+      uses: Azure/login@v1
       with:
         creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
