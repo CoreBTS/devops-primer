@@ -4,6 +4,9 @@
 
 name: Java CI with Maven
 
+env:
+  AZURE_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
+
 on:
   push:
     branches: [ "feature_as_module1" ]
@@ -40,3 +43,8 @@ jobs:
     - name: Display download folder
       run: ls -R
       working-directory: ./download
+
+    - name: Login to Azure
+    - uses: Azure/login@v1
+      with:
+        creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
