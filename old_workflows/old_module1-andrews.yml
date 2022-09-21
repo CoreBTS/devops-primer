@@ -2,20 +2,22 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 # Build > Upload Artifact > Download Artifact > Deploy to Azure
 
-name: AS-Build Java App - Testing
+name: Java CI with Maven
 
 env:
   AZURE_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
   AZURE_WEBAPP_NAME: 'as-module1-app01'
-  ARTIFACT_NAME: 'module1_java_app'
 
 on:
   push:
     branches: [ "feature_as_module1" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
@@ -29,26 +31,19 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Get Java App Filename
-      id: java_app_filename
-      working-directory: ./target
-      run: echo "::set-output name=java_app::$(ls *.jar)"
-
-    - id: upload-artifact
-      uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3
       with:
-        name: ${{env.ARTIFACT_NAME}}
-        path: ./target/${{steps.java_app_filename.outputs.java_app}}
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
+        name: java-app
+        path: ./target/*.jar
+    
+    - uses: actions/download-artifact@v3
       with:
-        name: ${{env.ARTIFACT_NAME}}
+        name: java-app
         path: ./download
+
+    - name: Display download folder
+      run: ls
+      working-directory: ./download
 
     - name: Login to Azure
       uses: Azure/login@v1
@@ -59,8 +54,8 @@ jobs:
       uses: Azure/webapps-deploy@v2
       with:
         app-name: ${{env.AZURE_WEBAPP_NAME}}
-        package: ./download/${{needs.build.steps.java_app_filename.outputs.java_app}}
-    
-    - name: Logout of Azure
+        package: ./download/demo-api-0.0.2-SNAPSHOT.jar
+
+    - name: Logout
       run: |
         az logout
