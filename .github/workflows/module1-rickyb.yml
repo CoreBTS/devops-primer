@@ -46,6 +46,12 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.DISTRIBUTION }}
           cache: 'maven'
+        
+      - name: Setup working directory
+        run: mkdir downloads
+
+      - name: Change to working directory
+        run: cd downloads
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -54,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app-rb
-          path: '${{ github.workspace }}/*.jar'
+          path: downloads/java-app-rb.jar
 
   deploy:
     permissions:
@@ -80,7 +86,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: '${{ github.workspace }}/*.jar'
+          package: downloads/java-app-rb.jar
    
    
           
