@@ -23,10 +23,11 @@ env:
   AZURE_WEBAPP_NAME: app-simple-app-dev-01    # set this to the name of your Azure Web App
   JAVA_VERSION: '17'                          # set this to the Java version to use
   DISTRIBUTION: temurin                       # set this to the Java distribution
+  AZURE_TENANT_ID: 653fcdc1-a3dc-4588-96c4-ef684fc1232b
 
 on:
   push:
-    branches: [ "rb-feature" ]
+    branches: [ "feature_rb" ]
   workflow_dispatch:
 
 permissions:
@@ -70,15 +71,10 @@ jobs:
         with:
           name: java-app-rb
 
-      - name: Deploy to Azure Web App - Login
-        id: deploy-to-webapp-login
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
         uses: azure/login@v1
         with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
-          
-      - name: Deploy to Azure Web App - Deploy
-        id: deploy-to-webapp
-        uses: Azure/webapps-deploy@v2
-        with:
-          app-name: app-simple-app-dev-01
-          package: '${{ github.workspace }}/target/*.jar'
+          package: '*.jar'
