@@ -1,0 +1,40 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# Build > Upload Artifact > Download Artifact > Deploy to Azure
+
+name: AS-Build Java App - Testing
+
+env:
+  AZURE_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
+  AZURE_WEBAPP_NAME: 'as-module1-app01'
+
+on:
+  push:
+    branches: [ "feature_as_module1" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Get Java App Filename
+      id: java_app_filename
+      working-directory: ./target
+      run: echo "::set-output name=java_app::$(ls *.jar)"
+
+    - id: upload-artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: module1_java_app
+        path: ./target/${{steps.java_app_filename.outputs.java_app}}
