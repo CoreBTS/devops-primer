@@ -57,11 +57,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app-rb
-          path: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+          path: /home/runner/work/devops-primer/devops-primer/target/
 
   deploy:
-    permissions:
-      contents: none
     runs-on: ubuntu-latest
     needs: build
     
