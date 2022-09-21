@@ -44,11 +44,8 @@ jobs:
           distribution: ${{ env.DISTRIBUTION }}
           cache: 'maven'
         
-      - name: Setup working directory
-        run: mkdir downloads
-
       - name: Change to working directory
-        run: cd downloads
+        run: cd /home/runner/work/devops-primer/devops-primer/target/
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -84,7 +81,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+          package: ./home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
    
    
           
