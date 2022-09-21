@@ -26,7 +26,7 @@ env:
 
 on:
   push:
-    branches: [ "feature_rb" ]
+    branches: [ "rb-feature" ]
   workflow_dispatch:
 
 permissions:
@@ -74,6 +74,5 @@ jobs:
         id: deploy-to-webapp
         uses: azure/login@v1
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
           package: '*.jar'
