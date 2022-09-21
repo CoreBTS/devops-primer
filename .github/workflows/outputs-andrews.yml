@@ -32,7 +32,7 @@ jobs:
 
     - id: ls
       name: Display download folder
-      run: echo "::set-output name=java_app::ls *.jar"
+      run: echo "::set-output name=java_app::$(ls *.jar)"
       working-directory: ./target
 
     - name: Echo ls output
