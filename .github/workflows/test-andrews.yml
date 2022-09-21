@@ -49,3 +49,14 @@ jobs:
       with:
         name: ${{env.ARTIFACT_NAME}}
         path: ./download
+
+    - name: Login to Azure
+      uses: Azure/login@v1
+      with:
+        creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
+
+    - name: Azure WebApp
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{env.AZURE_WEBAPP_NAME}}
+        package: ./download/${{needs.build.steps.java_app_filename.outputs.java_app}}
