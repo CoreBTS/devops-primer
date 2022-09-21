@@ -71,10 +71,19 @@ jobs:
         with:
           name: java-app-rb
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
+      - name: Deploy to Azure Web App - Login
+        id: deploy-to-webapp-login
         uses: azure/login@v1
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           creds: '{"clientId":"${{ secrets.ARM_CLIENT_ID }}","clientSecret":"${{ secrets.ARM_CLIENT_SECRET }}","subscriptionId":"${{ secrets.ARM_SUBSCRIPTION_ID }}","tenantId":"${{ env.AZURE_TENANT_ID }}"}'
-          package: '*.jar'
+          
+      - name: Deploy to Azure Web App - Deploy
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          package: '${{ github.workspace }}/target/*.jar'
+   
+   
+          
