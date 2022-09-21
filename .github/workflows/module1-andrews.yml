@@ -50,7 +50,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: ${{env.ARTIFACT_NAME}}
-        path: ./download
+        #path: ./download
 
     - name: Login to Azure
       uses: Azure/login@v1
@@ -61,7 +61,7 @@ jobs:
       uses: Azure/webapps-deploy@v2
       with:
         app-name: ${{env.AZURE_WEBAPP_NAME}}
-        package: ./download/${{needs.build.steps.java_app_filename.outputs.java_app}}
+        package: '${{ github.workspace }}/target/*.jar' #./download/${{needs.build.steps.java_app_filename.outputs.java_app}}
     
     - name: Logout of Azure
       run: |
