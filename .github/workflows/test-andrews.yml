@@ -7,6 +7,7 @@ name: AS-Build Java App - Testing
 env:
   AZURE_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
   AZURE_WEBAPP_NAME: 'as-module1-app01'
+  ARTIFACT_NAME: 'module1_java_app'
 
 on:
   push:
@@ -36,7 +37,7 @@ jobs:
     - id: upload-artifact
       uses: actions/upload-artifact@v3
       with:
-        name: module1_java_app
+        name: ${{env.ARTIFACT_NAME}}
         path: ./target/${{steps.java_app_filename.outputs.java_app}}
   deploy:
     runs-on: ubuntu-latest
@@ -46,4 +47,5 @@ jobs:
     - name: Download artifact from build job
       uses: actions/download-artifact@v3
       with:
-        name: ${{needs.build.steps.upload-artifact.name}}
+        name: ${{env.ARTIFACT_NAME}}
+        path: ./download
