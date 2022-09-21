@@ -84,7 +84,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: ./home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+          package: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
    
    
           
