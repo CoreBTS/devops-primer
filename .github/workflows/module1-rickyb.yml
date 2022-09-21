@@ -54,16 +54,13 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app-rb
-          path: '${{ github.workspace }}/target/*.jar'
+          path: '${{ github.workspace }}/*.jar'
 
   deploy:
     permissions:
       contents: none
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     
     steps:
       - name: Download artifact from build job
@@ -83,7 +80,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          package: '${{ github.workspace }}/target/*.jar'
+          package: '${{ github.workspace }}/*.jar'
    
    
           
