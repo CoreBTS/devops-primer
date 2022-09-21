@@ -60,3 +60,7 @@ jobs:
       with:
         app-name: ${{env.AZURE_WEBAPP_NAME}}
         package: ./download/${{needs.build.steps.java_app_filename.outputs.java_app}}
+    
+    - name: Logout of Azure
+      run: |
+        az logout
