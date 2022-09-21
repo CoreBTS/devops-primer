@@ -43,6 +43,9 @@ jobs:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.DISTRIBUTION }}
           cache: 'maven'
+          
+      - name: Make working directory
+        run: mkdir /home/runner/work/devops-primer/devops-primer/target/
         
       - name: Change to working directory
         run: cd /home/runner/work/devops-primer/devops-primer/target/
