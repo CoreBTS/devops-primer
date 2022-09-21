@@ -29,8 +29,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-      
+
     - id: ls
       name: Display download folder
       run: echo "::set-output name=java_app::ls *.jar"
       working-directory: ./target
+
+    - name: Echo ls output
+      run: echo ${{steps.ls.outputs.java_app}}
