@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app-rb
-          path: /home/runner/work/devops-primer/devops-primer/target/
+          path: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app-rb
-          path: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+          path: /home/runner/work/devops-primer/devops-primer/target/
 
       - name: Deploy to Azure Web App - Login
         id: deploy-to-webapp-login
