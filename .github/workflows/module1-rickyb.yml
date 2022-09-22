@@ -86,6 +86,12 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           package: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+          
+      - name: Unit Test Health Check
+        run: |
+          echo "Running curl on endpoint https://app-simple-app-dev-01.azurewebsites.net/manage/health"
+          curl https://app-simple-app-dev-01.azurewebsites.net/manage/health > test.txt
+          cat test.txt
    
    
           
