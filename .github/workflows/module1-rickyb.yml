@@ -58,6 +58,9 @@ jobs:
         with:
           name: java-app-rb
           path: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
+       
+      - name: Run Unit Tests
+        run: mvn -B test
 
   deploy:
     runs-on: ubuntu-latest
