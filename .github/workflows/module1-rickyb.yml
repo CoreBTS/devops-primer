@@ -97,7 +97,7 @@ jobs:
           
       - name: Unit Test Health Check - Revert if not up 
         if: ${{ steps.curl.outputs.curlcheck }} != "{"status":"UP"}"
-        ## Use Azure CLI to revert to last used slot
+        run: echo Use Azure CLI to revert to last used slot
    
    
           
