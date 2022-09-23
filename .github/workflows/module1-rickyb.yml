@@ -94,7 +94,9 @@ jobs:
           cat test.txt
           echo ::set-output name=curlcheck::$(cat test.txt)
           echo ${{ steps.curl.outputs.curlcheck }}
-        if: test.txt != "{"status":"UP"}"
+          
+      - name: Unit Test Health Check - Revert if not up 
+        if: ${{ steps.curl.outputs.curlcheck }} != "{"status":"UP"}"
         ## Use Azure CLI to revert to last used slot
    
    
