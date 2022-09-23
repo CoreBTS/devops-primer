@@ -88,10 +88,13 @@ jobs:
           package: /home/runner/work/devops-primer/devops-primer/target/demo-api-0.0.2-SNAPSHOT.jar
           
       - name: Unit Test Health Check
+        id: curl
         run: |
           echo "Running curl on endpoint https://app-simple-app-dev-01.azurewebsites.net/manage/health"
           curl https://app-simple-app-dev-01.azurewebsites.net/manage/health > test.txt
           cat test.txt
+          echo ::set-output name=curlcheck::$(cat test.txt)
+          echo ${{ steps.curl.outputs.curlcheck }}
    
    
           
