@@ -96,7 +96,7 @@ jobs:
           echo ${{ steps.curl.outputs.curlcheck }}
           
       - name: Unit Test Health Check - Revert if not up 
-        if: ${{ steps.curl.outputs.curlcheck }} == "{"status":"UP"}"
+        if: startsWith( 'status":"UP', ${{ steps.curl.outputs.curlcheck }} )
         run: |
           cat test.txt
           echo Use Azure CLI to revert to last used slot
