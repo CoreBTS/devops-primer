@@ -7,15 +7,21 @@ resource "azurerm_service_plan" "app_service_plan" {
   name                = var.service_plan_name
   resource_group_name = azurerm_resource_group.app_rg.name
   location            = azurerm_resource_group.app_rg.location
-  os_type             = "Linux"
-  sku_name            = "S1"
+  os_type             = var.service_plan_os_type
+  sku_name            = var.service_plan_sku_name
 }
 
 resource "azurerm_linux_web_app" "app" {
+  depends_on = [
+    azurerm_key_vault_secret.app_kv_secret
+  ]
   name                = var.app_name
   resource_group_name = azurerm_resource_group.app_rg.name
   location            = azurerm_service_plan.app_service_plan.location
   service_plan_id     = azurerm_service_plan.app_service_plan.id
+  app_settings = {
+    KEY_VAULT_SETTING = "@Microsoft.KeyVault(SecretUri=${local.app_kv_secret_url})"
+  }
 
   site_config {
     application_stack {
@@ -77,7 +83,7 @@ resource "azurerm_key_vault_access_policy" "app_access_policy" {
 }
 
 resource "azurerm_key_vault_secret" "app_kv_secret" {
-  name         = azurerm_linux_web_app.app.name
+  name         = var.app_name
   value        = random_password.app_kv_secret.result
   key_vault_id = azurerm_key_vault.app_kv.id
   depends_on = [
