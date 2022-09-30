@@ -12,8 +12,8 @@ env:
 on:
   push:
     branches: [ "feature_as_module1" ]
-  pull_request:
-    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
