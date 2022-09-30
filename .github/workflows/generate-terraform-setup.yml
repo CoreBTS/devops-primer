@@ -1,0 +1,33 @@
+name: Terraform Deploy - [workspace-name]
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace-name:
+        description: 'Name for the workspace to setup. This should be unique'
+        required: true 
+        type: string
+
+env:
+  PR_BRANCH: "workflow/${{ inputs.workspace-name }}"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - run: |
+        mkdir -p ./terraform-artifacts/${{ inputs.workspace-name }}
+
+    - run: |
+        sed s/\|workspace-name\|/${{ inputs.workspace-name }}/g ./.templates/main.tf.template > ./terraform-artifacts/${{ inputs.workspace-name }}/main.tf
+
+    - run: |
+        sed s/\|workspace-name\|/${{ inputs.workspace-name }}/g ./.templates/terraform-deploy.yml.template >> ./.github/workflows/terraform-deploy-${{ inputs.workspace-name }}.yml
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v4
+      with:
+        branch: ${{ env.PR_BRANCH }}
