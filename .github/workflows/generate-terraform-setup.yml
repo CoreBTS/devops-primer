@@ -1,4 +1,4 @@
-name: Terraform Deploy - [workspace-name]
+name: Scaffold Terraform Setup From Template
 
 on:
   workflow_dispatch:
@@ -27,7 +27,14 @@ jobs:
     - run: |
         sed s/\|workspace-name\|/${{ inputs.workspace-name }}/g ./.templates/terraform-deploy.yml.template >> ./.github/workflows/terraform-deploy-${{ inputs.workspace-name }}.yml
 
+    - uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v4
       with:
         branch: ${{ env.PR_BRANCH }}
+        token: ${{ steps.generate-token.outputs.token }}
