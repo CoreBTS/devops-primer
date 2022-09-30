@@ -31,7 +31,7 @@ jobs:
           }'
 
     - run: |
-        az storage container create --name ${{ inputs.workspace-name }} --account-name ${{ env.STORAGE_ACCOUNT }} \--auth-mode login
+        az storage container create --name "tfstate-${{ inputs.workspace-name }}" --account-name ${{ env.STORAGE_ACCOUNT }} --auth-mode login
 
     - run: |
         mkdir -p ./terraform-artifacts/${{ inputs.workspace-name }}
