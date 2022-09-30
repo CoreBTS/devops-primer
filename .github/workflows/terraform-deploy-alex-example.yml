@@ -1,0 +1,25 @@
+name: Terraform Deploy - alex-example
+
+env:
+  ARM_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: terraform-artifacts/alex-example
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: hashicorp/setup-terraform@v2
+
+    - run: terraform init
