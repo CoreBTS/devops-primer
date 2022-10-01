@@ -14,12 +14,10 @@ defaults:
     working-directory: terraform-artifacts/|workspace-name|
 
 jobs:
-  setup:
+  terraform:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
 
     - uses: hashicorp/setup-terraform@v2
-
-    - run: terraform init
