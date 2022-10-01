@@ -1,0 +1,20 @@
+name: Scaffold Module 3 Terraform Git Repository
+
+on:
+  workflow_dispatch:
+    inputs:
+      workspace-name:
+        description: 'Name for the workspace to setup. This should be unique'
+        required: true 
+        type: string
+
+env:
+  ARM_TENANT_ID: '653fcdc1-a3dc-4588-96c4-ef684fc1232b'  
+  STORAGE_ACCOUNT: sttfdevopsprimer01
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
