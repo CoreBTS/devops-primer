@@ -1,4 +1,4 @@
-# Module 3 - Full Automation (Bringing it all together)
+# Module 3 - End-to-End Automation (Bringing it all together)
 
 In this module, you will take the skills you've learned with Git, GitHub Actions and Terraform to automate the build and deployment of a web application to two environments, nonprod and prod.  You will be able to re-use a large portion of the code written in the previous modules, the focus here is to ensure the code is deployable across multiple environments with only changes to the environment tfvars files, along with a full automation of the deployment process for both infrastructure and web application code. 
 
@@ -30,17 +30,17 @@ Hashicorp Terraform and VS Code installed on your workstation, along with access
 
 You will be provided with a Git repo for Terraform that has the following preconfigured:
 
- - Repo Secrets
- - Main.tf
- - Backends.tf
+ - Repository Secrets
+ - main.tf
+ - backends.tf
  - main branch
- - Workflow file with secrets referenced
+ - A starter workflow file with secrets referenced
 
-You will also be provided with Azure Containers for your State Files. 
+You will also be provided with Azure Blob Storage Containers for your State Files. 
 
 ## A Word About State Files
 
-Terraform tracks the status of deployed resources via a [State File](https://www.terraform.io/language/state).  In this module, you'll be working with local State Files.  While there are provisions to fix a corrupted State File, those are beyond the scope of this module.  If you encounter a State File issue, it's suggested that you delete the State File and also delete the Azure Resources via the Portal, fix the Terraform code and then re-deploy.  This should only be performed in nonprod, it's expected that your code is "ironed out" in nonprod prior to committing it to prod.
+Terraform tracks the status of deployed resources via a [State File](https://www.terraform.io/language/state).  In this module, you'll be working with remote State Files.  While there are provisions to fix a corrupted State File, those are beyond the scope of this module.  If you encounter a State File issue, it's suggested that you delete the State File and also delete the Azure Resources via the Portal, fix the Terraform code and then re-deploy.  This should only be performed in nonprod, it's expected that your code is "ironed out" in nonprod prior to committing it to prod.
 
 ## GitHub Actions
 
@@ -50,7 +50,7 @@ Terraform tracks the status of deployed resources via a [State File](https://www
 
 ## Setup Azure Resources
 
-For this module, we will setup the Azure resources via Terraform and will be using two Resource Groups, one as NonProd in East US2 and one as Prod in Central US.  It's suggested that you start with deploying the NonProd Resource Group and associated resources before creation of the Prod Resource Group and Resources.  Using Terraform, create the following:
+For this module, we will setup the Azure resources via Terraform and will be using two Resource Groups, one as NonProd in East US 2 and one as Prod in Central US.  It's suggested that you start with deploying the NonProd Resource Group and associated resources before creation of the Prod Resource Group and Resources.  Using Terraform, create the following:
 
 - Resource Group
 - App Service Plan (B1 SKU for nonprod, S1 SKU for prod)
@@ -79,15 +79,15 @@ Other settings not listed above are up to the course taker to choose and _should
 
 ## Configure the Web App to Read the Key Vault Secret
 
-Once the resources are in place, the Web App should be granted access to the Key Vault Secret and reference it as part of its Application Settings.  This permission should only allow it to read the Secret, it should not be given any additional permissions.  It's suggested that you start by statically referencing the Object ID of the Web App to grant the permissions, then go back and convert that static value to one that dynamically references the Object ID of the Web App.  The Web App's Settings should also dynamically reference the Key Vault Secret, it's suggested that you follow the same process of using a static reference and then converting it to a dynamic reference.
+Once the resources are in place, the Web App should be granted access to the Key Vault Secret and reference it as part of its Application Settings via Terraform.  This permission should only allow it to read the Secret, it should not be given any additional permissions.  It's suggested that you start by statically referencing the Object ID of the Web App to grant the permissions, then go back and convert that static value to one that dynamically references the Object ID of the Web App.  The Web App's Settings should also dynamically reference the Key Vault Secret, it's suggested that you follow the same process of using a static reference and then converting it to a dynamic reference.
 
 ## Grant Additional Access to the Key Vault Secret
 
-Use a conditional to grant the Modern Applications AAD Security Group R/W access to the Key Vault Secret, but only in Prod.
+Use a conditional in your Terraform code to grant the Modern Applications AAD Security Group R/W access to the Key Vault Secret, but only in Prod.
 
 ### Troubleshooting
 
-As part of this module, the proctors will make changes to your code that will update or possibly break your deployment.  Your task will be to identify the change(s), record what they were for review with the proctors, and then push any fixes (if needed).
+As part of this module, the course leader(s) will make changes to your code that will update or possibly break your deployment.  Your task will be to identify the change(s), record what they were for review with the proctors, and then push any fixes (if needed).
 
 ### Additional Tweaks and Modifications
 

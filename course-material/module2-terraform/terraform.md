@@ -66,7 +66,7 @@ Other settings not listed above are up to the course taker to choose and _should
 
 ## Configure the Web App to Read the Key Vault Secret
 
-Once the resources are in place, the Web App should be granted access to the Key Vault Secret and reference it as part of its Application Settings.  This permission should only allow it to read the Secret, it should not be given any additional permissions.  It's suggested that you start by statically referencing the Object ID of the Web App to grant the permissions, then go back and convert that static value to one that dynamically references the Object ID of the Web App.  The Web App's Settings should also dynamically reference the Key Vault Secret, it's suggested that you follow the same process of using a static reference and then converting it to a dynamic reference.
+Once the resources are in place, the Web App should be granted access to the Key Vault Secret and reference it as part of its Application Settings via Terraform.  This permission should only allow it to read the Secret, it should not be given any additional permissions.  It's suggested that you start by statically referencing the Object ID of the Web App to grant the permissions, then go back and convert that static value to one that dynamically references the Object ID of the Web App.  The Web App's Settings should also dynamically reference the Key Vault Secret, it's suggested that you follow the same process of using a static reference and then converting it to a dynamic reference.
 
 ### Additional Tweaks and Modifications
 
