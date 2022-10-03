@@ -25,6 +25,14 @@ variable "app_name" {
   type = string
 }
 
+variable "app_application_stack" {
+  type = object({
+    java_server         = string
+    java_version        = string
+    java_server_version = string
+  })
+}
+
 variable "key_Vault_name" {
   type = string
 }

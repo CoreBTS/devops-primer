@@ -25,9 +25,9 @@ resource "azurerm_linux_web_app" "app" {
 
   site_config {
     application_stack {
-      java_server         = "JAVA"
-      java_version        = "java17"
-      java_server_version = "17"
+      java_server         = var.app_application_stack.java_server
+      java_version        = var.app_application_stack.java_version
+      java_server_version = var.app_application_stack.java_server_version
     }
   }
 
@@ -90,3 +90,4 @@ resource "azurerm_key_vault_secret" "app_kv_secret" {
     azurerm_key_vault_access_policy.client_access_policy
   ]
 }
+
