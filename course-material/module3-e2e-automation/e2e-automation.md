@@ -26,6 +26,8 @@ Based on the outcomes of presenting, the course leader(s) and course taker can c
 
 Hashicorp Terraform and VS Code installed on your workstation, along with access to the Azure Subscription.
 
+This module requires you to complete your work in a separate GitHub repo. To provision your repo for module 3, visit the [devops-tools](https://github.com/CoreBTS/devops-tools/actions/workflows/generate-terraform-repo.yml) repo and run the **Scaffold DevOps Module 3 Terraform Git Repository** workflow. The workflow dispatch with ask for a `workspace-name`. For this value, provide a value such as 'devops-amo'. This value will be used for your repository name, as well as other identifying information for your workspace.
+
 ### Provided Resources
 
 You will be provided with a Git repo for Terraform that has the following preconfigured:
