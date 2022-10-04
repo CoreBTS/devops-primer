@@ -13,3 +13,5 @@ app_application_stack = ({
 })
 
 key_Vault_name = "as-module2-kv01"
+
+storage_account_name = "ascoredevopsprimern001"

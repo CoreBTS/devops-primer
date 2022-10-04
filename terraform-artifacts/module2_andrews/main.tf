@@ -91,3 +91,12 @@ resource "azurerm_key_vault_secret" "app_kv_secret" {
   ]
 }
 
+##########Tweaks##########
+resource "azurerm_storage_account" "app_storage_account" {
+  count                    = var.environment == "nonprod" ? 1 : 0
+  name                     = lower(var.storage_account_name)
+  resource_group_name      = azurerm_resource_group.app_rg.name
+  location                 = azurerm_resource_group.app_rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}

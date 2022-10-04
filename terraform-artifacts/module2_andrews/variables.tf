@@ -36,3 +36,11 @@ variable "app_application_stack" {
 variable "key_Vault_name" {
   type = string
 }
+
+variable "storage_account_name" {
+  type = string
+  validation {
+    condition     = length(var.storage_account_name) >= 3 && length(var.storage_account_name) <= 24
+    error_message = "The storage account name must be between 3 and 24 characters"
+  }
+}
