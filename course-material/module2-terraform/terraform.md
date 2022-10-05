@@ -72,6 +72,6 @@ Once the resources are in place, the Web App should be granted access to the Key
 
 If the module proves easy, here are some additional suggestions to attempt to get more familiar with Terraform, if time permits:
 
-- Grant the Modern Applications & Data AAD Security Group R/W Access to the KeyVault Secret
+- Grant the Modern Applications & Data Microsoft 365 Group R/W Access to the KeyVault Secret
 - Deploy a conditional setting that creates a storage account but only if the environment is NonProd
 - Deploy a storage account via Portal that will contain the Terraform State Files for both environments and reconfigure Terraform to reference them
