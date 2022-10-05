@@ -85,7 +85,7 @@ Once the resources are in place, the Web App should be granted access to the Key
 
 ## Grant Additional Access to the Key Vault Secret
 
-Use a conditional in your Terraform code to grant the Modern Applications AAD Security Group R/W access to the Key Vault Secret, but only in Prod.
+Use a conditional in your Terraform code to grant the CoreBTS NOC and SD Staff AAD Security Group R/W access to the Key Vault Secret, but only in Prod.
 
 ### Troubleshooting
 
