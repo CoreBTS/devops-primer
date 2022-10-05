@@ -41,7 +41,7 @@ variable "storage_account_name" {
   type = string
   validation {
     condition     = (
-      can(regex("^[0-9A-Za-z]+$", var.storage_account_name)) &&
+      can(regex("^[[:alnum:]]+$", var.storage_account_name)) &&
       length(var.storage_account_name) >= 3 &&
       length(var.storage_account_name) <= 24
     )
