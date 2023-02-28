@@ -56,7 +56,20 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
-
+      
+      - name: 'Az CLI login'
+        uses: azure/login@v1
+        with:
+          client-id: ${{ ARM_CLIENT_ID }}
+          tenant-id: ${{ ARM_AZURE_TENANT_ID }}
+          subscription-id: ${{ ARM_AZURE_SUBSCRIPTION_ID }}
+  
+      - name: 'Run az commands'
+        run: |
+          az account show
+          az group list
+          pwd 
+          
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
